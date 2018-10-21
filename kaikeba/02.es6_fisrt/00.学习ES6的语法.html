@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+
+        function show1(...args) {
+            show2(...args);
+        }
+
+        function show2(a, b) {
+            alert(a + ',' + b);
+        }
+
+        show1(12, 5);
+        // if (3 < 5) {
+        //     let a = 12;
+        // }
+
+        // alert(a);
+
+
+        // // es6当中定义和使用对象
+
+        // //  定义一个对象 和定义一个变量其实是一样的。
+        // //先定义在使用 不管是变量 对象 数组 各种类型的 
+        // class Person {
+        //     constructor( name, age ){
+        //         this.name = name;
+        //         this.age = age;
+        //     }
+
+        //     showName () {
+        //         console.log(this.name);
+        //     }
+
+        //     showAge () {
+        //         console.log(this.age);
+        //     }
+
+
+        // }
+
+
+        // class Worker extends Person {
+        //     constructor( name, age, job) {
+        //         //子类当中调用父类构造方法的作用
+        //         //就当中对象初始化。可以使用父类当中的属性赋方法
+        //         super(name, age);
+        //         this.job = job;
+        //     }
+
+        //     showJob () {
+        //         console.log('我是：' +this.job);
+        //     }
+        // }
+
+
+
+        // let p = new Person('Alan', 23);
+        // p.showName();
+        // p.showAge();
+        // console.log("=====多写一点有用的代码========华丽丽的分割线==================");
+        // let worker = new Worker('Alan', 34, '瞎搞的');
+        // worker.showName();
+        // worker.showAge();
+        // worker.showJob();
+
+
+
+
+        // // 还不太清楚的知识点。
+        // // reduce  map 传统的面相对象。 修改构造器的this的指向 如何修正
+        // // es6 结构赋值的语法 
+
+        // // 传统的面向对象
+
+        // function Person(name, age){
+        //     this.name = name;
+        //     this.age = age;
+        // }
+
+        // Person.prototype.showName = function (){
+        //     //原型对象上的this 就是当前Person对象的实例
+        //     // 这个又让我想到要复习一下 czbk 的内容的了
+        //     // 定义在原型对象上的方法 这个this 在方法的调用的时候
+        //     // 就是当前这个 Person 对象的实例
+        //     console.log(this.name);
+        //     console.log(this);
+        // }
+
+        // Person.prototype.showAge = function(){
+        //     console.log(this.age);
+        // }
+
+
+        // //如何使用javascript当中的继承
+        // // 1. 调用构造函数的时候用 call 方法来改变this 的指向 传儿子对象进去
+        // // 2. 子类的原型 赋值为 父类对象
+        // // 修改子列 原型的constructor属性 是 子类的够着函数
+
+        // function Worker( name, age, job) {
+        //     //调用父类的构造函数 
+        //     //创建一个对象 给对象的属性赋初值
+        //     Person.call(this, name, age);
+        //     this.job = job;
+        // }
+        // // 继承的时候为什么要写这两句。 改变work对象原型链的指向
+        // // 同一个对象的 原型 也就没有所谓的继承了。
+        // // 另外一个类来继承其他的类。
+        // // javascript 不是那么的严谨。用好的。去除不要用不好的特性
+        // Worker.prototype = new Person();
+        // Worker.prototype.constructor = Worker;
+        // Worker.prototype.showJob = function () {
+        //     console.log(' 我是做： ' +this.job);
+        // }
+
+        // //new 一个方法 调用构造函数 创建一个对象的实例
+        // // let person = new Person('blue', 18);
+        // // person.showAge();
+        // // person.showName();
+
+        // // 继承的目的好处 是可以使用父类的方法 和属性 如何来继承
+        // let worker = new Worker('Alan', 28, '瞎搞的');
+        // worker.showName();
+        // worker.showAge();
+        // worker.showJob();
+
+        // let arr = [12, 4, 11, 55, 65, 98, 100];
+
+        // let sum = arr.reduce( (tmp, item, index) => {
+        //     console.log(tmp, item, index);
+        //     // 这里的tmp 参数 值是什么 这么得来的。
+        //     // 用到的时候在去查一下api 
+        //     return tmp + item;
+        // })
+
+
+        // // map 返回 数组的值 是否和要求的对应。
+        // let arr = [62, 55, 83, 93, 33, 15];
+
+        // let arr2 = arr.map( function(item) {
+        //     if( item >= 60 ){
+        //         return true;
+        //     }else {
+        //         return false;
+        //     }
+        // })
+
+        // // 只有一个参数  方法体返回值只有一句话的时候
+        // // 比较的结果 正好和 if 的判断是对应的。
+        // let arr3 = arr.map( item => item >= 60);
+        // console.log(arr2);
+        // console.log(arr3);
+
+
+        // 对象的属性值简写
+        // let obj = {
+        //     a : 12,
+        //     b : 33
+        // }
+        // console.log(obj);
+
+        // var m = 44;
+        // var n = 55;
+
+        // let obj2 = {
+        //     'm' : m,
+        //     'n' : n
+        // }
+
+        // //如果属性的值和属性的名称相同 着可以省略属性的值
+        // let obj3 = {
+        //     m,
+        //     n
+        // }
+        // // 可以省略单引号  es6 的语法 在移动端 可谷歌浏览器当中支持还是挺好的
+        // let obj4 = {
+        //     m : m,
+        //     n : n
+        // }
+        // console.log(obj2);
+        // console.log(obj3);
+        // console.log(obj4);
+
+
+        // json 可以省略 function
+        // let obj = {
+        //     a : 12,
+        //     b : 5,
+        //     show :function () {
+
+        //         // this == obj;
+        //         console.log(this);
+        //         console.log( this.a + this.b);
+        //     }
+        // }
+
+        // obj.show();
+
+        // let obj2 = {
+        //     a : 12,
+        //     b : 66,
+        //     show() {
+        //         //普通方法当中的 this就是调用当前方法的对象。
+        //         console.log(this);
+        //         console.log(this.a + this.b);
+        //     }
+        // }
+
+        // obj2.show();
+
+        // function show(){
+        //     //普通方法当中的this 就是调用当前方法的对象
+        //     console.log(`this是：${ this } ${ 1 + 1}`);
+        // }
+
+        // // document.onclick = show;
+        // // document.onclick = show.bind(window);
+        // document.onclick = show.bind(123);
+
+
+
+
+        // let arr = [12, 5, 44, 66, 89, 70, 0, 15];
+        // let sum = 0;
+        // //当方法是回调函数的 作为参数的时候 变量 作用域 的语法一下还
+        // // 反应不过来。就记住 可一直直接这么使用就可以了。
+        // var getSum = function(item) {
+        //     sum = item + sum ;
+        // }
+        // arr.forEach( getSum );
+
+        // console.log(sum);
+
+
+
+        // 在忙也要敲一遍代码
+        // 不是说就看着老师的代码去抄 。一个一个字去抄 一定要有自己的理解
+        // 和自己的思考。。
+        // 快乐的去做一件事情。 写代码本身是一件快乐的事情哦。
+        // 不要搞得那么复杂。
+        // 不要觉得看了一遍就懂了。觉得老师做的很简单。
+        // 看着会 和自己会 那是完全不同的两码事情。
+        // 多写 多敲。多敲。在多敲代码。
+        // 一定要将写代码 编程自己的一部分。
+        // css 基础是要学习 切图这个是刀工 基本功 学习学习和练习扎实
+        // 但是不是说要我却搞设计。 我是一个前端。写代码为主的。
+        // 写前端的代码一定要写出自己的感觉来。
+
+
+        //定义一个学生成绩的数据 
+        // let arr = [12, 4, 88, 93, 45, 55, 100];
+        // // 返回一个新的数组 去除 偶数 保留基数 
+        // let arr2 = arr.filter( item => item % 2);
+        // console.log(arr2);
+
+
+
+        // 好像 去扣每一个字符 每一标点符号一样。。还是挺舒服的
+        // 使用 thinkpad 这个键盘来敲代码真的是舒服好多。
+        // let {a, b} = {
+        //     a:12,
+        //     b:15
+        // };
+        // console.log(a + ',' + b);
+        // console.log(a ,b);
+
+        // let [a, b] = { a: 12, b: 12 };
+        // let {a, b} = { a: 12, b: 12 };
+
+        // let [a, b] = [12 ,88]
+        // console.log(a, b)
+        // console.log(a, b)
+
+
+        // 结构赋值
+        // 找一找写代码的感觉 专注于前端开发。
+        // 主要就是写js css html 
+        // let [a, b, c] = [12, 5, 8];
+
+        // let {a, b, c} = {
+        //     a : 12,
+        //     b : 88,
+        //     c : 95
+        // }
+
+        //代码这个东西 自己写 和看老师 确实是完全的两回事呀。
+        // 这个结构赋值的 具体的语法 到底是什么样子的。
+        // 不知道应该用在什么地方。
+        // 先不要管那么多。 学在哪里 。学什么地方。就专注的学习
+        // 就可以了。
+        // let [n1,{ a, b, c }, n2 ] = 
+        // [
+        //     12,
+        //     {
+        //         a : {
+        //             n1 : 5,
+        //             n2 : 12
+        //         },
+        //         b : 12,
+        //         c : 55,
+        //     },
+        //     99
+        // ];
+        // console.log(a, b, c);
+        // console.log(n1, a, b, c, n2);
+
+
+        /*
+            console.log(123);
+
+            var a = 12;
+            function show(){
+                alert(2);
+
+                var a = 5;
+            }
+
+            show();
+        */
+
+
+
+
+    </script>
+
+</body>
+
+</html>

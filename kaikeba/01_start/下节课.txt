@@ -1,0 +1,11 @@
+ES6/7
+变量、函数、Array、generator、async...
+
+数据交互
+ajax、HTTP协议
+jsonp、其他跨域——跨域方式？ CORS跨域
+WebSocket、Node.js、socket.io
+
+webstorm    IDE开发环境
+websocket   双工通信
+webpack     打包、编译工具

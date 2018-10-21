@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script>
+    function show(){
+      alert(`this是：${this}`);
+    }
+
+    document.onclick=show.bind('abc');
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
