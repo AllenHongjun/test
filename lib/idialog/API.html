@@ -1,0 +1,1116 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>iDrag &amp; iDialog by Dreamback</title>
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="lib/js/jquery-1.8.3.min.js"></script>
+  	<script src="lib/js/jquery.iDialog.js" dialog-theme="default"></script>
+
+
+	<script src="js/syntaxhighlighter/scripts/shCore.js"></script>
+	<script src="js/syntaxhighlighter/scripts/shBrushJScript.js"></script>
+	<link rel="stylesheet" href="js/syntaxhighlighter/styles/shCoreDefault.css"/>
+	<script type="text/javascript">
+	SyntaxHighlighter.config.toolbar = true;
+	SyntaxHighlighter.all();</script>
+</head>
+<body>
+	<div class="side">
+		<h1 class="logo">
+			<i class="i">iDrag <br />
+				&amp; <br />
+				iDialog
+			</i>
+			<i class="j">iDrag <br />
+				&amp; <br />
+				iDialog
+			</i>
+		</h1>
+		<ul class="nav">
+			<li><a href="index.html" target="_self">首页</a></li>
+			<li><a class="cur" href="API.html" target="_self">API</a></li>
+			<li><a href="LAB.html" target="_self">实验室</a></li>
+      <li><a href="https://github.com/dreamback/idialog" target="_blank">github</a></li>
+      <li><a href="https://github.com/dreamback/idialog/archive/gh-pages.zip" target="_blank">下载</a></li>
+		</ul>
+		<p class="copyright">
+			heshimeng1987@qq.com
+		</p>
+	</div>
+	<div class="bd">
+<h2>$.drag() / iDrag()</h2>
+
+<p>调用<code>$.drag()</code> / <code>iDrag()</code> 将返回实例对象</p>
+
+<h3>配置参数</h3>
+
+<table>
+<thead>
+            <tr>
+              <th>参数</th>
+              <th>类型</th>
+              <th>默认值</th>
+              <th>说明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="#target-id" target="_self">target</a></td>
+              <td>string/object</td>
+              <td>undefined</td>
+              <td>拖拽前，鼠标按下的有效区。</td>
+            </tr>
+            <tr>
+              <td><a href="#root-id" target="_self">root</a></td>
+              <td>string/object</td>
+              <td>上面target的jQuery对象</td>
+              <td>拖拽时，移动的对象。</td>
+            </tr>
+            <tr>
+              <td><a href="#min-id" target="_self">min</a></td>
+              <td>object</td>
+              <td>undefined</td>
+              <td>默认情况下可以是无穷小。如min:{x:0, y:0},表示移动的最小坐标不能小于(0,0)。</td>
+            </tr>
+            <tr>
+              <td><a href="#max-id" target="_self">max</a></td>
+              <td>object</td>
+              <td>undefined</td>
+              <td>默认情况下可以是无穷大。如min:{x:100, y:100},表示移动的最小坐标不能大于(100,100)。</td>
+            </tr>
+            <tr>
+              <td><a href="#start-id" target="_self">start</a></td>
+              <td>function</td>
+              <td>undefined</td>
+              <td>鼠标按下时的回调函数，第一个参数是一个对象{x,y}，保存的值是现在鼠标到视图窗口的坐标值,若root没传入,则相对于document</td>
+            </tr>
+            <tr>
+              <td><a href="move" target="_self">move</a></td>
+              <td>function</td>
+              <td>undefined</td>
+              <td>拖拽过程的回调函数，第一个参数是一个对象{x,y}，保存当前root元素的位置坐标,若root没传入,则相对于document</td>
+            </tr>
+            <tr>
+              <td><a href="#end-id" target="_self">end</a></td>
+              <td>function</td>
+              <td>undefined</td>
+              <td>拖拽结束时的回调函数，第一个参数是一个对象{x,y}，保存当前root元素的位置坐标,若root没传入,则相对于document</td>
+            </tr>
+            <tr>
+              <td><a href="#fixed2-id" target="_self">fixed</a></td>
+              <td>boolean</td>
+              <td>false</td>
+              <td>表示root的定位模式是不是position:fixed。内部已经封装IE6兼容实现方法。</td>
+            </tr>
+          </tbody>
+        </table>
+        
+
+<h2>$.dialog() / iDialog()</h2>
+
+<p>调用<code>$.dialog()</code> / <code>iDialog()</code> 将返回实例对象</p>
+
+<h3>配置参数</h3>
+
+<table>
+          <thead>
+            <tr>
+              <th>参数</th>
+              <th>类型</th>
+              <th>默认值</th>
+              <th>说明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="#id-id" target="_self">id</a></td>
+              <td>string</td>
+              <td>时间戳+new Date()</td>
+              <td>添加id可以防止生成多个同样对话框的结构，亦可通过$.dialog.get[id]方法获取该实例($.dialog.get是个数组)。</td>
+            </tr>
+            <tr>
+              <td><a href="#title-id" target="_self">title</a></td>
+              <td>string/false</td>
+              <td>消息</td>
+              <td>对话框的标题,当设置为false时，对话将没有任何颜色的（背景颜色、描边、阴影），title的标题结构也不存在。此功能主要是给开发者提供完全自定义对话框。</td>
+            </tr>
+            <tr>
+              <td><a href="#content-id" target="_self">content</a></td>
+              <td>string/object</td>
+              <td>对话宽的内容</td>
+              <td>可以是普通的任意字符串，或者是DOM节点对象。</td>
+            </tr>
+            <tr>
+              <td><a href="#size-id" target="_self">width</a></td>
+              <td>int</td>
+              <td>内容的宽度</td>
+              <td>不设置宽度时将会根据内容宽度来设置宽度，亦可手动设置。</td>
+            </tr>
+            <tr>
+              <td><a href="#size-id" target="_self">height</a></td>
+              <td>int</td>
+              <td>内容的高度</td>
+              <td>不设置高度时将会根据内容高度来设置宽度，亦可手动设置。</td>
+            </tr>
+           <tr>
+              <td><a href="#position-id" target="_self">left</a></td>
+              <td>int</td>
+              <td>让对话框在视图下居中的值</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href="#position-id" target="_self">top</a></td>
+              <td>int</td>
+              <td>对话框在视图区域，黄金比例的值</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href="#padding-id" target="_self">padding</a></td>
+              <td>string/int</td>
+              <td>20</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><a href="#fixed-id" target="_self">fixed</a></td>
+              <td>boolean</td>
+              <td>false</td>
+              <td>表示root的定位模式是不是position:fixed。内部已经封装IE6兼容实现方法。</td>
+            </tr>
+            <tr>
+              <td><a href="#lock-id" target="_self">lock</a></td>
+              <td>boolean</td>
+              <td>false</td>
+              <td>是否显示遮罩</td>
+            </tr>
+            <tr>
+              <td><a href="#opacity-id" target="_self">opacity</a></td>
+              <td>number</td>
+              <td>0.3</td>
+              <td>遮罩层的透明度</td>
+            </tr>
+            <tr>
+              <td><a href="#background-id" target="_self">background</a></td>
+              <td>string</td>
+              <td>'#000'</td>
+              <td>遮罩层的颜色</td>
+            </tr>
+            <tr>
+              <td><a href="#follow-id" target="_self">follow</a></td>
+              <td>string/object</td>
+              <td>false</td>
+              <td>对话框展现时，是否跟随follow元素的位置</td>
+            </tr>
+            <tr>
+              <td><a href="#drag-id" target="_self">drag</a></td>
+              <td>boolean</td>
+              <td>true</td>
+              <td>对话框是否可以拖拽</td>
+            </tr>
+            <tr>
+              <td><a href="#effect-id" target="_self">effect</a></td>
+              <td>string</td>
+              <td>'i-scale'</td>
+              <td>对话框打开是的动画的样式类名类(css3动画)</td>
+            </tr>
+            <tr>
+              <td><a href="#init-id" target="_self">init</a></td>
+              <td>function</td>
+              <td>undefined</td>
+              <td>对话框初始化时的回调函数</td>
+            </tr>
+            <tr>
+              <td><a href="#show-id" target="_self">show</a></td>
+              <td>function</td>
+              <td>function(){}</td>
+              <td>对话框打开时的回调函数，当return false时，将阻止默认的打开函数</td>
+            </tr>
+            <tr>
+              <td><a href="#hide-id" target="_self">hide</a></td>
+              <td>function</td>
+              <td>function(){}</td>
+              <td>对话框关闭时的回调函数，当return false时，将阻止默认的关闭函数</td>
+            </tr>
+            <tr>
+              <td><a href="#esc-id" target="_self">esc</a></td>
+              <td>boolean</td>
+              <td>true</td>
+              <td>按键盘的'Esc'键，是否关闭弹层。</td>
+            </tr>
+            <tr>
+              <td><a href="#time-id" target="_self">time</a></td>
+              <td>int</td>
+              <td>undefined</td>
+              <td>如果设置了一个时间值(毫秒单位), 对话框将在这个时间后，自动关闭。</td>
+            </tr>
+            <tr>
+              <td><a href="#btn-id" target="_self">btn</a></td>
+              <td>object</td>
+              <td>undefined</td>
+              <td>丰富的button设置</td>
+            </tr>
+          </tbody>
+        </table>
+        
+
+<h2>外部方法</h2>
+
+<table>
+          <thead>
+            <tr>
+              <th>函数</th>
+              <th>参数</th>
+              <th>说明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="#dialog-get-id" target="_self">$.dialog.get[],$.dialog.get是个数组</a></td>
+              <td>string</td>
+              <td>传入在使用$.dialog()初始化时设置的id，将获得该实例的对象。</td>
+            </tr>
+          </tbody>
+        </table>
+        
+
+<ul>
+<li><p>在实例化<code>$.dialog()</code>时，得到的对象中包含着这许多属性成员和方法成员，这就给了使用者更加灵活的调用，例如动态改变对话框的标题、大小、位置、内容等。</p></li>
+<li><p>除了表格《调用<code>$.dialog()</code> 将返回实例对象》上面罗列出来的成员，下面罗列出其它的成员： </p></li>
+</ul>
+
+<h3>属性/方法成员</h3>
+
+<table>
+          <thead>
+            <tr>
+              <th>成员</th>
+              <th>类型</th>
+              <th>说明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>$lock</td>
+              <td>jQuery object</td>
+              <td>遮罩层节点的jQuery 对象</td>
+            </tr>
+            <tr>
+              <td>$dialog</td>
+              <td>jQuery object</td>
+              <td>对话框最外层的元素</td>
+            </tr>
+            <tr>
+              <td>$title</td>
+              <td>jQuery object</td>
+              <td>标题节点的jQuery 对象</td>
+            </tr>
+            <tr>
+              <td>$content</td>
+              <td>jQuery object</td>
+              <td>内容节点的jQuery 对象</td>
+            </tr>
+            <tr>
+              <td>$close</td>
+              <td>jQuery object</td>
+              <td>关闭按钮节点的jQuery 对象</td>
+            </tr>
+            <tr>
+              <td>content</td>
+              <td>function</td>
+              <td>传参进行，设置对话框的内容。</td>
+            </tr>
+          </tbody>
+        </table>
+
+  <h2>$.drag() / iDrag() 配置参数说明与演示</h2>
+  <p id="target-id"><code>target</code> 表示鼠标可以拖拽的有效区域。</p>
+  <style>
+    .idrag-demo{width:500px;border:1px solid #563D7C;list-style:none;padding:0;margin:0;height:80px;position:relative;margin-left:30px;}
+    .idrag-demo li{position:absolute;background:#563D7C;width:30px;height:30px;left:10px;top:10px;padding:0;margin:0;cursor:move;z-index:111;}
+    .idrag-demo .text{height:20px;top:auto;bottom:0;left:auto;right:0;color:#fff;padding:0 8px;cursor:default;width:auto;font-size:12px;line-height:20px;}
+  </style>
+  <ul class="idrag-demo">
+    <li id="idrag-demo-target"></li>
+  </ul>
+  <script>
+    iDrag({
+      target:document.getElementById('idrag-demo-target')
+    });
+  </script>
+  <pre class="brush: js">
+    iDrag({
+      target:document.getElementById('idrag-demo-target')
+    });
+  </pre>
+
+  <style>
+    #idrag-demo-root{border:1px solid #563D7C;background:#fff;width:100px;height:60px;cursor:default;}
+    #idrag-demo-root p{margin:0;padding:0;height:20px;background:#563D7C;cursor:move;}
+  </style>
+  <p id="root-id"><code>root</code> 表示拖拽跟随移动的元素。</p>
+  <ul class="idrag-demo">
+    <li id="idrag-demo-root">
+      <p id="idrag-demo-root-target"></p>
+    </li>
+  </ul>
+   <script>
+    iDrag({
+      target:document.getElementById('idrag-demo-root-target'),
+      root: document.getElementById('idrag-demo-root')
+    });
+  </script>
+  <pre class="brush: js">
+    iDrag({
+      target:document.getElementById('idrag-demo-root-target'),
+      root: document.getElementById('idrag-demo-root')
+    });
+  </pre>
+
+  <p id="min-id"><code>min</code>配置滚动的最小坐标</p>
+  <ul class="idrag-demo">
+    <li id="idrag-demo-min"></li>
+  </ul>
+   <script>
+    iDrag({
+      target:document.getElementById('idrag-demo-min'),
+      min:{x:0,y:-10}
+    });
+  </script>
+  <pre class="brush: js">
+    iDrag({
+      target:document.getElementById('idrag-demo-min'),
+      min:{x:0,y:-10}
+    });
+  </pre>
+
+  <p id="max-id"><code>max</code>配置滚动的最大坐标</p>
+  <ul class="idrag-demo">
+    <li id="idrag-demo-max"></li>
+  </ul>
+   <script>
+    iDrag({
+      target:'#idrag-demo-max',
+      max:{x:470,y:50}
+    });
+  </script>
+  <pre class="brush: js">
+    iDrag({
+      target:'#idrag-demo-max',
+      max:{x:470,y:50}
+    });
+  </pre>
+
+  <p id="start-id"><code>start</code>配置鼠标按下target元素时的回调函数,第一个参数是一个对象{x,y}，保存当前root元素的位置坐标,若root没传入,则相对于document</p>
+  <ul class="idrag-demo">
+    <li id="idrag-demo-start"></li>
+    <li class="text" id="start-text"></li>
+  </ul>
+   <script>
+    $.drag({
+      target:'#idrag-demo-start',
+      start: function(pos){
+        $('#start-text').html( '开始：(x:'+pos.x+', y:'+pos.y+')' );
+      }
+    });
+  </script>
+  <pre class="brush: js">
+    $.drag({
+      target:'#idrag-demo-start',
+      start: function(pos){
+        $('#start-text').html( '开始：(x:'+pos.x+', y:'+pos.y+')' );
+      }
+    });
+  </pre>
+
+    <p id="move-id"><code>move</code>配置鼠标拖拽target元素时的回调函数,第一个参数是一个对象{x,y}，保存当前root元素的位置坐标,若root没传入,则相对于document</p>
+  <ul class="idrag-demo">
+    <li id="idrag-demo-move"></li>
+    <li class="text" id="move-text"></li>
+  </ul>
+   <script>
+    $.drag({
+      target:'#idrag-demo-move',
+      move: function(pos){
+        $('#move-text').html( '拖拽中：(x:'+pos.x+', y:'+pos.y+')' );
+      }
+    });
+  </script>
+  <pre class="brush: js">
+    $.drag({
+      target:'#idrag-demo-move',
+      move: function(pos){
+        $('#move-text').html( '拖拽中：(x:'+pos.x+', y:'+pos.y+')' );
+      }
+    });
+  </pre>
+
+     <p id="end-id"><code>end</code>配置拖拽结束时的回调函数,第一个参数是一个对象{x,y}，保存当前root元素的位置坐标,若root没传入,则相对于document</p>
+  <ul class="idrag-demo">
+    <li id="idrag-demo-end"></li>
+    <li class="text" id="end-text"></li>
+  </ul>
+   <script>
+    $.drag({
+      target:'#idrag-demo-end',
+      end: function(pos){
+        $('#end-text').html( '结束：(x:'+pos.x+', y:'+pos.y+')' );
+      }
+    });
+  </script>
+  <pre class="brush: js">
+    $.drag({
+      target:'#idrag-demo-end',
+      end: function(pos){
+        $('#end-text').html( '拖拽结束：(x:'+pos.x+', y:'+pos.y+')' );
+      }
+    });
+  </pre>
+
+<p id="fixed-id"><code>fixed</code>表示target的position属性是不是被设置为:fixed;一般在对话框中才结合使用，这里不写例子了。</p>
+
+<h2>$.dialog() / iDialog() 配置参数说明与演示</h2>
+
+<p id="id-id"><code>id</code>不设置的情况：</p>
+  <pre class="brush: js">
+    iDialog({
+      content:'id不设置的情况,继续点刚才的“运行”按钮还弹出对话框！'
+    });
+  </pre>
+<p><input type="button" value="运行" id="no-id-demo-btn"></p>
+<script>
+  $('#no-id-demo-btn').click(function(){
+    iDialog({
+      content:'id不设置的情况,继续点刚才的“运行”按钮还弹出对话框！'
+    });
+  });
+</script>
+
+<p>设置了<code>id</code>,不会再弹层新的对话框</p>
+  <pre class="brush: js">
+    iDialog({
+      id:'iDialogid',//任意字符串
+      content:'id被设置了,继续点刚才的“运行”按钮不会弹出新的对话框！'
+    });
+  </pre>
+<p><input type="button" value="运行" id="have-id-demo-btn"></p>
+<script>
+  $('#have-id-demo-btn').click(function(){
+    iDialog({
+      id:'iDialogid',//任意字符串
+      content:'id被设置了,继续点刚才的“运行”按钮不会弹出新的对话框！'
+    });
+  });
+</script>
+
+
+<p id="title-id"><code>title</code> 自定义对话框标题文字</p>
+  <pre class="brush: js">
+    $.dialog({
+      id:'3E432E',
+      title:'Hello title!',
+      content:'自定义title'
+    });
+  </pre>
+<p><input type="button" value="运行" id="custom-title-demo-btn"></p>
+<script>
+$('#custom-title-demo-btn').click(function(){
+    $.dialog({
+      id:'3E432E',
+      title:'Hello title!',
+      content:'自定义title'
+    });
+});
+</script>
+<p><code>title</code> 当设置为false时，对话将没有任何颜色的（背景颜色、描边、阴影），title的标题结构也不存在。</p>
+<p>此功能主要是给开发者提供完全自定义对话框。如：半透明的图片背景；</p>
+  <pre class="brush: js">
+  $('#false-title-demo-btn').click(function(){
+    $.dialog({
+      title:false,
+      content:'<img src="images/418x387.jpg" width="418" height="387" />'
+    });
+});
+  </pre>
+<p><input type="button" value="运行" id="false-title-demo-btn"></p>
+
+<script>
+  $('#false-title-demo-btn').click(function(){
+    $.dialog({
+      title:false,
+      content:'<img style="box-shadow:0 0 10px rgba(0,0,0,.2),0 0 10px rgba(0,0,0,.2),0 0 10px rgba(0,0,0,.2),0 0 10px rgba(0,0,0,.2);" src="images/418x387.jpg" width="418" height="387" />'
+    });
+});
+</script>
+
+<p id="content-id"><code>content</code> 可以是普通的任意字符串，或者是DOM节点对象。</p>
+<ul>
+  <li>普通字符串:</li>
+</ul>
+<pre class="brush: js">
+    $.dialog({
+      content:'Hello World!'
+    });
+  </pre>
+<p><input type="button" value="运行" id="content-string-demo-btn"></p>
+<script>
+  $('#content-string-demo-btn').click(function(){
+    $.dialog({
+      content:'Hello World!'
+    });
+});
+</script>
+<ul>
+  <li>DOM节点:DOM节点将被深度克隆到对话框的结构中。</li>
+</ul>
+<div id="content-dom-demo" style="width:200px;height:100px;border:1px solid #563D7C;padding:10px;">
+    content设置为DOM节点， 一般该节点被设置隐藏，display:none;<br />
+    在初始化对话框时，被设置为display:block;
+</div>
+
+<pre class="brush: js">
+    $.dialog({
+      content:document.getElementById('content-dom-demo')
+    });
+  </pre>
+  <p><input type="button" value="运行" id="content-dom-demo-btn"></p>
+<script>
+  $('#content-dom-demo-btn').click(function(){
+    $.dialog({
+      content:document.getElementById('content-dom-demo')
+    });
+});
+</script>
+
+<p id="size-id"><code>width/height</code> 自定义宽度或高度。不设置的情况下会自动根据内容的大小来确定对话框的大小。</p>
+<pre class="brush: js">
+    $.dialog({
+      title:'这是一个自定义宽度和高度的弹层！',
+      width:300,
+      height:150
+    });
+</pre>
+<p><input type="button" value="运行" id="size-demo-btn"></p>
+<script>
+  $('#size-demo-btn').click(function(){
+    $.dialog({
+      title:'这是一个自定义宽度和高度的弹层！',
+      width:300,
+      height:150
+    });	
+  });
+</script>
+
+<p id="position-id"><code>top/left</code> 可以自定义对话框打开时的坐标位置。下面例子跟随按钮的位置显示。</p>
+<pre class="brush: js">
+    $.dialog({
+      title:'这是一个自定义坐标的弹层！',
+      width:300,
+      height:150,
+      top: $(this).offset().top + $(this).outerHeight(),
+      left: $(this).offset().left - ( 300 - $(this).outerWidth() )/2 
+    });	
+</pre>
+<p><input type="button" value="运行" id="position-demo-btn"></p>
+<script>
+  $('#position-demo-btn').click(function(){
+    $.dialog({
+      title:'这是一个自定义宽度和高度的弹层！',
+      width:300,
+      height:150,
+      top: $(this).offset().top + $(this).outerHeight(),
+      left: $(this).offset().left - ( 300 - $(this).outerWidth() )/2 
+    });	
+  });
+</script>
+
+<p id="padding-id"><code>padding</code> 设置对话框content节点的内补白。</p>
+<pre class="brush: js">
+    $.dialog({
+	padding:'10px 20px 30px 40px',
+	content:'padding的值是通过jQuery的css()方法进行设置的。'
+    });	
+</pre>
+<p><input type="button" value="运行" id="padding-demo-btn"></p>
+<script>
+  $('#padding-demo-btn').click(function(){
+    $.dialog({
+	padding:'10px 20px 30px 40px',
+	content:'padding的值是通过jQuery的css()方法进行设置的。'
+    });	
+  });
+</script>
+
+<p id="fixed2-id"><code>fixed</code>表示对话框的定位模式是不是position:fixed。内部已经封装IE6兼容实现方法。</p>
+<pre class="brush: js">
+    $.dialog({
+	fixed:true,
+	content:'现在滚动浏览器滚动条，对话框不会移动哦！'
+    });	
+</pre>
+<p><input type="button" value="运行" id="fixed-demo-btn"></p>
+<script>
+  $('#fixed-demo-btn').click(function(){
+    $.dialog({
+	fixed:true,
+	content:'现在滚动浏览器滚动条，对话框不会移动哦！'
+    });	
+  });	
+</script>
+
+
+<p id="lock-id"><code>lock-id</code> 是否显示遮罩</p>
+<pre class="brush: js">
+    $.dialog({
+	fixed:true,
+	lock:true,
+	content:'显示遮罩层。'
+    });	
+</pre>
+<p><input type="button" value="运行" id="lock-demo-btn"></p>
+<script>
+  $('#lock-demo-btn').click(function(){
+    $.dialog({
+	fixed:true,
+	lock:true,
+	content:'显示遮罩层'
+    });	
+  });	
+</script>
+
+<p id="background-id"><code>background</code> 遮罩层的颜色</p>
+<pre class="brush: js">
+    $.dialog({
+	title:'成功',
+	lock:true,
+	background:'#5CB85C',
+	content:'操作成功！'
+    });	
+</pre>
+<p><input type="button" value="运行" id="background-demo-btn"></p>
+<script>
+  $('#background-demo-btn').click(function(){
+    $.dialog({
+    	title:'成功',
+	fixed:true,
+	lock:true,
+	background:'#5CB85C',
+	content:'操作成功！'
+    });	
+  });	
+</script>
+
+
+<p id="follow-id"><code>follow</code> 跟随摸个元素显示，如果弹层的边缘超出浏览器视图。弹层将会自动适应显示的坐标。</p>
+<pre class="brush: js">
+    $.dialog({
+      lock:true,
+      follow:this,//当前按钮
+      content:'当前按钮位置显示跟随显示！'
+    }); 
+</pre>
+<p><input type="button" value="运行" id="follow-demo-btn"></p>
+<script>
+  $('#follow-demo-btn').click(function(){
+    $.dialog({
+      lock:true,
+      follow:this,//当前按钮
+      content:'当前按钮位置显示跟随显示！'
+    }); 
+  }); 
+</script>
+
+<p id="drag-id"><code>drag</code> 禁止拖拽</p>
+<pre class="brush: js">
+    $.dialog({
+      drag:false,
+      content:'禁止拖拽！'
+    }); 
+</pre>
+<p><input type="button" value="运行" id="darg-demo-btn"></p>
+<script>
+  $('#darg-demo-btn').click(function(){
+    $.dialog({
+      drag:false,
+      content:'禁止拖拽！'
+    }); 
+  }); 
+</script>
+
+<p id="effect-id"><code>effect</code> 对话框打开是的动画的样式类名类(css3动画),默认‘i-scale’</p>
+<pre class="brush: js">
+    $.dialog({
+        lock:true,
+        opacity:.5,    
+        width:400,
+        height:200,
+        effect:'i-super-scale',
+        content:'i-super-scale'
+    }); 
+</pre>
+<p><input type="button" value="i-super-scale" id="i-super-scale-btn"></p>
+<script>
+  $('#i-super-scale-btn').click(function(){
+    $.dialog({
+      lock:true,
+      opacity:.5,
+      width:400,
+      height:200,
+      effect:'i-super-scale',
+      content:'i-super-scale'
+    }); 
+  }); 
+</script>
+<pre class="brush: js">
+    $.dialog({
+        lock:true,
+        opacity:.5,    
+        width:400,
+        height:200,
+        effect:'i-right-slide',
+        content:'i-right-slide'
+    }); 
+</pre>
+<p><input type="button" value="i-right-slide" id="i-right-slide-btn"></p>
+<script>
+  $('#i-right-slide-btn').click(function(){
+    $.dialog({
+      lock:true,
+      opacity:.5,
+      width:400,
+      height:200,
+      effect:'i-right-slide',
+      content:'i-right-slide'
+    }); 
+  }); 
+</script>
+
+<pre class="brush: js">
+    $.dialog({
+        lock:true,
+        opacity:.5,    
+        width:400,
+        height:200,
+        effect:'i-top-slide',
+        content:'i-top-slide'
+    }); 
+</pre>
+<p><input type="button" value="i-top-slide" id="i-top-slide-btn"></p>
+<script>
+  $('#i-top-slide-btn').click(function(){
+    $.dialog({
+      lock:true,
+      opacity:.5,
+      width:400,
+      height:200,
+      effect:'i-top-slide',
+      content:'i-top-slide'
+    }); 
+  }); 
+</script>
+
+<pre class="brush: js">
+    $.dialog({
+        lock:true,
+        opacity:.5,    
+        width:400,
+        height:200,
+        effect:false,
+        content:'取消展示动画！'
+    }); 
+</pre>
+<p><input type="button" value="effect-false" id="effect-false-btn"></p>
+<script>
+  $('#effect-false-btn').click(function(){
+    $.dialog({
+      lock:true,
+      opacity:.5,
+      width:400,
+      height:200,
+      effect:false,
+      content:'取消展示动画！'
+    }); 
+  }); 
+</script>
+
+<p id="init-id"><code>init</code> 初始化时的回调函数</p>
+<pre class="brush: js">
+    $.dialog({
+        id:'init-dialog-demo',
+        content:'<input type="button" id="init-my-btn" value="点我关闭对话框">',
+        init: function(){
+            var that = this;//this，表示当前对话框实例对象
+            $('#init-my-btn').click(function(){
+              that.hide();
+          });
+      }
+    }); 
+</pre>
+<p><input type="button" value="运行" id="init-demo-btn"></p>
+<script>
+  $('#init-demo-btn').click(function(){
+    $.dialog({
+        id:'init-dialog-demo',
+        content:'<input type="button" id="init-my-btn" value="点我关闭对话框">',
+        init: function(){
+            var that = this;//this，表示当前对话框实例对象
+            $('#init-my-btn').click(function(){
+              that.hide();
+          });
+      }
+    }); 
+  }); 
+</script>
+
+<p id="show-id"><code>show</code> 打开时的回调函数。如果回到函数返回false，将阻止打开行为。</p>
+<pre class="brush: js">
+var openTimes = 0;
+  $('#show-demo-btn').click(function(){
+    $.dialog({
+        padding:'20px 30px',
+        show: function(){
+          this.$content.html( '第' + (++openTimes) + '打开');
+        }
+    }); 
+  });
+</pre>
+<p><input type="button" value="运行" id="show-demo-btn"></p>
+<script>
+var openTimes = 0;
+  $('#show-demo-btn').click(function(){
+    $.dialog({
+        padding:'20px 30px',
+        show: function(){
+          this.$content.html( '第' + (++openTimes) + '打开' );
+        }
+    }); 
+  }); 
+</script>
+
+
+<p id="hide-id"><code>hide</code> 关闭时的回调函数。如果回到函数返回false，将阻止打开行为。</p>
+<pre class="brush: js">
+    $.dialog({
+        padding:'20px 30px',
+        content:'现在关闭弹层看看',
+        hide: function(){
+          return confirm('确定关闭？');
+        }
+    }); 
+</pre>
+<p><input type="button" value="运行" id="hide-demo-btn"></p>
+<script>
+  $('#hide-demo-btn').click(function(){
+    $.dialog({
+        padding:'20px 30px',
+        content:'现在关闭弹层看看',
+        hide: function(){
+          return confirm('确定关闭？');
+        }
+    }); 
+  });
+</script>
+
+<p id="esc-id"><code>esc</code> 按键盘的'Esc'键，是否关闭弹层。</p>
+<pre class="brush: js">
+    $.dialog({
+        esc:false,
+        content:'默认按ESC，是可以关闭的。现在关闭不了了！'
+    }); 
+</pre>
+<p><input type="button" value="运行" id="esc-demo-btn"></p>
+<script>
+  $('#esc-demo-btn').click(function(){
+    $.dialog({
+        esc:false,
+        content:'默认按ESC，是可以关闭的，现在关闭不了了！'
+    }); 
+  });
+</script>
+
+<p id="time-id"><code>time</code> 如果设置了一个时间值(毫秒单位), 对话框将在这个时间后，自动关闭。</p>
+<pre class="brush: js">
+    $.dialog({
+        id:'auto-hide',
+        time:3000,
+        content:'操作成功，<span id="my-time" style="color:red">3</span> 秒后自动关闭！',
+        show: function(){
+          var index = 3, 
+              $time = $('#my-time').html(index), 
+              that = this;
+          var interval = setInterval(function(){
+            if(--index<1){
+              clearInterval(interval);
+              that.hide();
+            }
+            $time.html( index );
+          },1000);
+        }
+    }); 
+</pre>
+<p><input type="button" value="运行" id="time-demo-btn"></p>
+<script>
+  $('#time-demo-btn').click(function(){
+    $.dialog({
+        id:'auto-hide',
+        time:3000,
+        content:'操作成功，<span id="my-time" style="color:red">3</span> 秒后自动关闭！',
+        show: function(){
+          var index = 3, 
+              $time = $('#my-time').html(index), 
+              that = this;
+          var interval = setInterval(function(){
+            if(--index<1){
+              clearInterval(interval);
+              that.hide();
+            }
+            $time.html( index );
+          },1000);
+        }
+    }); 
+  });
+</script>
+
+<h2>外部方法演示</h2>
+<p id="dialog-get-id"><code>time</code> 通过id获得对话框的对象</p>
+<pre class="brush: js">
+    $.dialog({
+      id:'mydemoid',
+      show: function(){
+        $.dialog.get['mydemoid'].$title.html('大家好');
+      }
+    }); 
+</pre>
+<p><input type="button" value="运行" id="dialog-get-demo-btn"></p>
+<script>
+  $('#dialog-get-demo-btn').click(function(){
+    $.dialog({
+      id:'mydemoid',
+      show: function(){
+        this.$title.html(1233412);
+        $.dialog.get['mydemoid'].$title.html('大家好');
+      }
+    });    
+  });
+</script>
+<h2>按钮配置/方法</h2>
+<p id="btn-id"><code>btn</code> 完整按钮的配置</p>
+<pre class="brush: js">
+  $.dialog({
+    id:'btndialog',
+    width:500,
+    btn: {                      //可以任意定义按钮个数
+      ok: {                     //按钮的key值，下次可用个btn方法从新设置
+        val: '确定',            //按钮显示的文本
+        type: 'green',         //样式可选参数green, blue, red, yellow .默认白色。
+        //disabled: true,       //是否可操作
+        click: function(btn) {
+          btn.className = 'blue';
+          return false;         //阻止默认的关闭行为
+        }
+      },
+      btn1: {                   //第二个按钮
+        val:'设置',
+        click: function(){
+          this.btn({           //this.btn ，dialog的方法成员
+            ok: {              //通过key找到第一个按钮
+              type: 'red'     //修改ok按钮的样式
+            },
+            disabled:{         //设置disabled 按钮可操作
+              disabled: false,
+              val:'可以操作'
+            }
+          });
+          return false;
+        }
+      },
+      disabled:{               //第三个按钮
+        val: '不可操作',
+        disabled:true,
+        click:function(){
+          this.btn({
+            disabled:{
+              disabled:true,
+              val:'不可操作'
+            }
+          })
+          return false;
+        }
+      },
+      cancle: {                //第四个按钮
+        val: '取消'
+      }
+    }
+  });
+</pre>
+<p><input type="button" value="运行" id="dialog-fullBtn-demo-btn"></p>
+<script>
+$('#dialog-fullBtn-demo-btn').click(function(){
+  $.dialog({
+    id:'btndialog',
+    width:500,
+    btn: {                      //可以任意定义按钮个数
+      ok: {                     //按钮的key值，下次可用个btn方法从新设置
+        val: '确定',            //按钮显示的文本
+        type: 'green',         //样式可选参数green, blue, red, yellow .默认白色。
+        //disabled: true,       //是否可操作
+        click: function(btn) {
+          btn.className = 'blue';
+          return false;         //阻止默认的关闭行为
+        }
+      },
+      btn1: {                   //第二个按钮
+        val:'设置',
+        click: function(){
+          this.btn({           //this.btn dialog的方法成员
+            ok: {              //通过key找到第一个按钮
+              type: 'red'     //修改ok按钮的样式
+            },
+            disabled:{         //设置disabled 按钮可操作
+              disabled: false,
+              val:'可以操作'
+            }
+          });
+          return false;
+        }
+      },
+      disabled:{
+        val: '不可操作',
+        disabled:true,
+        click:function(){
+          this.btn({
+            disabled:{
+              disabled:true,
+              val:'不可操作'
+            }
+          });
+          return false;
+        }
+      },
+      cancle: {                //另三个按钮
+        val: '取消'
+      }
+    }
+  });
+});
+
+</script>
+
+
+<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1860903"></script>
+<!-- UY END -->
+
+	</div>
+
+<div style="display:none;">
+  <script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fc42cb4943b0953279de070cd24fdb2f9' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</div>
+
+
+</body>
+</html>

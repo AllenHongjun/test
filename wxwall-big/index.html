@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>微信墙</title>
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    
+    <div class="msg-box">
+        <span class="close-btn">&Chi;</span>
+        <div class="header">
+            <img src="img/logo.jpg" alt="" class="head-img">
+            <span class="nickname">往事笑忘</span>
+        </div>
+        <div class="content">
+            <!-- <span>这里是消息文字这里是消息文字这里是消息文字
+                   
+            </span> -->
+            <img src="img/msg3.jpg" alt="图片">
+        </div>
+    </div>
+
+
+    <button class="show-btn">显示</button>
+    <script src="assets/jquery-2.0.3.min.js"></script>
+    <script src="js/index.js"></script>
+
+    <script>
+        $(function(){
+            $('.close-btn').click(function(){
+                $('.msg-box').fadeOut();
+            })
+
+            $('.show-btn').click(function(){
+                $('.msg-box').fadeIn();
+            })
+            
+            //当图片宽途超出盒子的宽度的时候
+            var img_width = $('.content img').width();
+            var content_box_width = $('.content').width();
+            if(img_width > content_box_width ){
+                $('.content img').width(content_box_width).css({
+                    'height':'auto'
+                });
+                
+            }
+        })
+    
+    </script>
+</body>
+</html>

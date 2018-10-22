@@ -1,0 +1,86 @@
+body {
+    background: #000 url(../img/defaultbg.jpg) no-repeat;
+    /* width: 100%; */
+    /* height: 100%; */
+}
+
+/* 放大的消息框 */
+.msg-box {
+    font-family: "微软雅黑";
+    width: 80%;
+    height: calc(100%-191px);
+    background-color: rgba(255, 255, 255, .22);
+    position: absolute;
+    top: 110px;
+    bottom: 81px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* 关闭按钮 */
+.msg-box .close-btn {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 40px;
+    line-height: 60px;
+    text-align: center;
+    color: #fff;
+    /* background-color: #fff; */
+
+}
+
+/* 头像区域 */
+.msg-box .header {
+
+    box-sizing: border-box;
+    width: 100%;
+    height: 25%;
+    border-bottom: 1px solid #fff;
+    /* margin-top: 5%; */
+    padding: 16px 25px;
+}
+
+.msg-box .head-img {
+    border-radius: 50%;
+    border: 2px solid #fff;
+    height: 100%;
+    width: auto;
+    vertical-align: middle;
+    
+}
+
+.msg-box .nickname {
+    padding-left: 15px;
+    font-size: 40px;
+    color: #fff;
+}
+/* 内容区域 */
+.msg-box .content {
+    width: 100%;
+    height: 75%;
+    /* text-align: center; */
+    padding-top: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.msg-box .content span {
+    float: left;
+    font-size: 50px;
+    color: #fff;
+    padding: 15px 20px;
+}
+
+.msg-box .content img {
+    width: auto;
+    height: 95%;
+    /* margin: 0 auto; */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}

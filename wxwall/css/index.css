@@ -26,17 +26,22 @@ body {
 }
 
 /*小的滚动卡片的布局*/
-.swiper-container {
+/*.swiper-container {
   width: 80%;
-  /*max-width: 1100px;*/
   height: 85%;
   margin: 0 auto;
   visibility: visible;
+}*/
+.swiper-container {
+  width: 80%;
+  height: 85%;
+  margin: 0 auto;
 }
+
 .swiper-container .swiper-slide {
    background-color:rgba(255, 255, 255, .33);
-   display: flex;
-   align-items: center;
+   /*display: flex;*/
+   /*align-items: center;*/
    color: #4B9E09;
    border-radius: 3px;
 }
@@ -44,18 +49,19 @@ body {
 .swiper-slide .u-head {
 	width: auto;
 	height: 90%;
-	min-width: 80px;
-	max-width: 180px;
+	/*min-width: 80px;
+	max-width: 180px;*/
 	border-radius: 50%;
 	border: 1px solid #fff;
 	overflow: hidden;
 	position: relative;
 	margin-left: 15px;
+	float:left;
 
 }
 
 .swiper-slide .u-head img{
-	width: 100%;
+	/*width: 100%;*/
 	height: 100%;
 }
 .swiper-slide .u-head .nickname-bg{
@@ -84,42 +90,40 @@ body {
 	font-size: 40px;
 	height: 100%;
 	align-items: center;
-
+	float:left;
+	overflow: hidden;
+	
 }
 
 .swiper-slide .msg-contain .u-msgword {
 	height: 100%;
-	display: flex;
-	align-items: center;
-	margin-left: 15px;
-	overflow:hidden;
+    word-break:break-all; /*支持IE，chrome，FF不支持*/
+　　word-wrap:break-all;/*支持IE，chrome，FF*/
+    /*white-space:nowrap;*/
+    overflow: hidden;
     text-overflow:ellipsis;
-    white-space:nowrap
 }
+
 
 
 /*大盒子的布局*/
-.swiper-container-big {
-
-	width: 80%;
-    /*max-width: 1100px;*/
-    height: 85%;
+.swiper-container .big {
     position: absolute;
     top: 100px;
     left: 10%;
-    /*background-color: yellow;*/
-	overflow: hidden;
-	visibility :hidden;
 }
 
-.swiper-container-big .swiper-slide{
+.swiper-container .big .swiper-slide{
 	background-color:rgba(255, 255, 255, .22);
 }
 
-.swiper-container-big .line {
+.swiper-container .big .line {
 	height: 3px;
 	background-color: rgba(255, 255, 255, .66);
 	margin: 20px 5px;
+}
+.swiper-container .line {
+	display: none;
 }
 .control-btn {
 	position: absolute;
