@@ -18,10 +18,24 @@
             <span class="nickname">往事笑忘</span>
         </div>
         <div class="content">
-            <!-- <span>这里是消息文字这里是消息文字这里是消息文字
+            <!-- <p>这里是消息文字这里是消息文字这里是消息文字这里是消息文字这里是消息文字这里是消息文字
+                这里是消息文字这里是消息文字这里是消息文字
+                这里是消息文字这里是消息文字这里是消息文字
+                这里是消息文字这里是消息文字这里是消息文字
+                这里是消息文字这里是消息文字这里是消息文字
                    
-            </span> -->
-            <img src="img/msg3.jpg" alt="图片">
+            </p> -->
+            <p>
+                <img src="img/emo/12.png">
+                <img src="img/emo/13.png">
+                范德萨发达
+                <img src="img/emo/15.png">
+                <img src="img/emo/15.png">[流汗]
+            </p>
+            
+
+
+            <!-- <img class="content-img" src="img/msg3.jpg" alt="图片"> -->
         </div>
     </div>
 
@@ -37,6 +51,10 @@
             })
 
             $('.show-btn').click(function(){
+                var text = $('.content span').html();
+                text = text.substring(0,35);
+                console.log(text);
+                $('.content span').html(text)
                 $('.msg-box').fadeIn();
             })
             

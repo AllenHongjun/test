@@ -68,14 +68,16 @@ body {
 }
 
 
-.msg-box .content span {
+.msg-box .content p {
+    margin: 0;
+    word-wrap: break-word;
     float: left;
-    font-size: 50px;
+    font-size: 90px;
     color: #fff;
     padding: 15px 20px;
 }
 
-.msg-box .content img {
+.msg-box .content .content-img {
     width: auto;
     height: 95%;
     /* margin: 0 auto; */
