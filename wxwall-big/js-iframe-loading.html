@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="load" align="center">
+        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540361318390&di=8689d5999a6d76be7ff82ad6f4859f6d&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F016ea057314efc0000002bf08c5256.gif" /> loading
+	</div>
+    <!-- 首先放一个div，用做loading效果 -->
+    <iframe id="demo" src="http://www.****.com" width="100%" height="800" frameborder="0" scrolling="no" marginheight="0"></iframe> <!-- src 里面放你想要的网页-->
+
+
+    <script type="text/javascript">
+        //<![CDATA[ 
+       var iframe = document.getElementById("demo"); 
+		iframe.onload = function(){ 
+			document.getElementById("load").style.display = "none";
+			console.log("iframe load  done"); 
+
+		}; 
+        </script>
+</body>
+
+</html>
