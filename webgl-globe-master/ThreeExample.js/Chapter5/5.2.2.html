@@ -2,7 +2,6 @@
 <html>
     <head>
         <script type="text/javascript" src="../lib/three.js"></script>
-        <!-- Find more information at https://github.com/mrdoob/three.js/tree/master/examples/fonts -->
         
         <script type="text/javascript">
             function init() {
@@ -15,34 +14,34 @@
                 // camera
                 var camera = new THREE.OrthographicCamera(-2.5, 2.5, 1.875, -1.875, 0.1, 100);
                 camera.position.set(5, 5, 20);
-                camera.lookAt(new THREE.Vector3(1, 0, 0));
+                camera.lookAt(new THREE.Vector3(0, 0, 0));
                 scene.add(camera);
                 
-                // draw axes to help you understand the coordinate
+                var material = new THREE.MeshLambertMaterial({
+                    color: 0xffff00
+                });
+                var geometry = new THREE.CubeGeometry(1, 2, 3);
+                var mesh = new THREE.Mesh(geometry, material);
+                scene.add(mesh);
+                
+                //可以设置物体的位置。  之前基础的
+                // mesh.position.set(-1, 0, -2);
+                // mesh.position = new THREE.Vector3(1.5, -0.5, 0);
+
+                // mesh.scale = new THREE.Vector3(2, -0.5, 0);
+                // mesh.scale.set(3,1.6,1);
+
+                mesh.rotation.set(30,60,60);
+                // mesh.position.z = 1;
+                
+                var light = new THREE.DirectionalLight(0xffffff);
+                light.position.set(20, 10, 5);
+                scene.add(light);
+                
                 drawAxes(scene);
                 
-                var material = new THREE.MeshBasicMaterial({
-                    color: 0xffff00,
-                    wireframe: true
-                });
-                    
-                // var light = new THREE.DirectionalLight(0xffffff);
-                // light.position.set(-5, 10, 5);
-                // scene.add(light);
-
-                // load font
-                var loader = new THREE.FontLoader();
-                loader.load('../lib/helvetiker_regular.typeface.json', function(font) {
-                    var mesh = new THREE.Mesh(new THREE.TextGeometry('Alan', {
-                        font: font,
-                        size: 1,
-                        height: 1
-                    }), material);
-                    scene.add(mesh);
-                    
-                    // render
-                    renderer.render(scene, camera);
-                });
+                // render
+                renderer.render(scene, camera);
             }
             
             function drawAxes(scene) {

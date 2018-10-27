@@ -222,14 +222,14 @@ DAT.Globe = function(container, opts) {
 
     //围绕地球的赤道添加一圈点
 
-    // for (var i = 0; i < 360; i++) {
-    //   lat= i;
-    //   lng = 50;
-    //   color = colorFn(6);
-    //   size = 0.2;
-    //   console.log(i);
-    //   addPoint(lat, lng, size, color, subgeo,true);
-    // }
+    for (var i = 0; i < 360; i++) {
+      lat= -50;
+      lng = 50;
+      color = colorFn(6);
+      size = 0.2;
+      console.log(i);
+      // addPoint(lat, lng, size, color, subgeo,true);
+    }
 
 
     if (opts.animated) {
@@ -250,11 +250,8 @@ DAT.Globe = function(container, opts) {
             }));
       } else {
         if (this._baseGeometry.morphTargets.length < 8) {
-          console.log('t l',this._baseGeometry.morphTargets.length);
           var padding = 8-this._baseGeometry.morphTargets.length;
-          console.log('padding', padding);
           for(var i=0; i<=padding; i++) {
-            console.log('padding',i);
             this._baseGeometry.morphTargets.push({'name': 'morphPadding'+i, vertices: this._baseGeometry.vertices});
           }
         }

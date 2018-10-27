@@ -12,23 +12,25 @@
                 var scene = new THREE.Scene();
                 
                 // camera
-                // canvas size is 400x300  视景角增加。。 看的范围变大。 看到东西变小
-                var camera = new THREE.PerspectiveCamera(80, 400 / 300, 1, 12);
-
-                // 照相机有一个位置 还有一个观察的方向
-                // enjoy the cake in your plate
-                camera.position.set(0,0,3);
-                // camera.lookAt(new THREE.Vector3(-1,-1,-1));
+                var camera = new THREE.OrthographicCamera(-2.5, 2.5, 1.875, -1.875, 0.1, 100);
+                camera.position.set(5, 5, 20);
+                camera.lookAt(new THREE.Vector3(0, 0, 0));
                 scene.add(camera);
                 
-                // a cube in the scene
-                var cube = new THREE.Mesh(new THREE.CubeGeometry(1, 1, 1),
-                        new THREE.MeshBasicMaterial({
-                            color: 0xff0000,
-                            wireframe: true
-                        })
-                );
-                scene.add(cube);
+                var material = new THREE.MeshLambertMaterial({
+                    color: 0xffff00
+                });
+                var geometry = new THREE.CubeGeometry(1, 2, 3);
+                var mesh = new THREE.Mesh(geometry, material);
+                scene.add(mesh);
+                
+                mesh.material = new THREE.MeshLambertMaterial({
+                    color: 0x336699
+                });
+                
+                var light = new THREE.DirectionalLight(0xffffff);
+                light.position.set(20, 10, 5);
+                scene.add(light);
                 
                 // render
                 renderer.render(scene, camera);

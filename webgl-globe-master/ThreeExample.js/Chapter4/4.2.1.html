@@ -12,25 +12,26 @@
                 var scene = new THREE.Scene();
                 
                 // camera
-                // canvas size is 400x300
-                // THREE.OrthographicCamera(left, right, top, bottom, near, far)  函数的参数 返回值 作用
-                var camera = new THREE.OrthographicCamera(-2, 2, 1.5, -1.5, 1, 10);
-                camera.position.set(-5, -5,-6);
+                var camera = new THREE.OrthographicCamera(-5, 5, 3.75, -3.75, 0.1, 100);
+                camera.position.set(25, 25, 25);
                 camera.lookAt(new THREE.Vector3(0, 0, 0));
-
-                // 屏幕当中显示的内容 就是 camera当中显示的内容
                 scene.add(camera);
                 
-                // a cube in the scene
-                var cube = new THREE.Mesh(new THREE.CubeGeometry(1, 1, 1),
-                        new THREE.MeshBasicMaterial({
-                            color: 0xff0000,
-                            wireframe: true
-                        })
-                );
-                scene.add(cube);
+                light
+                var light = new THREE.PointLight(0xffffff, 1, 100);
+                light.position.set(10, 15, 5);
+                scene.add(light);
                 
-                // render  物体 是不是一般创建后的位置都是在坐标的原地。。  照相机的位置  设置 和观察的方向。
+                var material = new THREE.MeshLambertMaterial({
+                    color: 0xffff00,     //是用来表现材质对散射光的反射能力
+                    emissive: 0xff0000   //是材质的自发光颜色，可以用来表现光源的颜色
+                });
+                
+                var cube = new THREE.Mesh(new THREE.CubeGeometry(5, 5, 5), material);
+                scene.add(cube);
+                //var sphere = new THREE.Mesh(new THREE.SphereGeometry(3, 20, 8), material);
+                //scene.add(sphere);
+                
                 renderer.render(scene, camera);
             }
         </script>

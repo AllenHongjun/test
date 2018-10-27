@@ -101,20 +101,89 @@
         color: #000000;
         background-color: rgba(0, 255, 255, 0.75);
     }
+
+
+    /*显示地球的样式*/
+    html {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background: #000000 url(loading.gif) center center no-repeat;
+        color: #ffffff;
+        font-family: sans-serif;
+        font-size: 13px;
+        line-height: 20px;
+        height: 100%;
+      }
+
+      #currentInfo {
+        width: 270px;
+        position: absolute;
+        left: 20px;
+        top: 63px;
+
+        background-color: rgba(0,0,0,0.2);
+
+        border-top: 1px solid rgba(255,255,255,0.4);
+        padding: 10px;
+      }
+
+      .year {
+        font: 16px Georgia;
+        line-height: 26px;
+        height: 30px;
+        text-align: center;
+        float: left;
+        width: 90px;
+        color: rgba(255, 255, 255, 0.4);
+
+        cursor: pointer;
+        -webkit-transition: all 0.1s ease-out;
+      }
+
+      .year:hover, .year.active {
+        font-size: 23px;
+        color: #fff;
+      }
+
+      #ce span {
+        display: none;
+      }
+
+      #ce {
+        width: 107px;
+        height: 55px;
+        display: block;
+        position: absolute;
+        bottom: 15px;
+        left: 20px;
+        background: url(/globe/ce.png);
+      }
+
+      #container-earth {
+        z-index: 99999;
+        position: absolute;
+      }
+
+
     </style>
 </head>
 
 <body>
+
+
     <script src="js/three.js"></script>
     <script src="js/tween.min.js"></script>
 
-
+    <script src="js/globe.js"></script>
     <script src="js/TrackballControls.js"></script>
     <script src="js/CSS3DRenderer.js"></script>
     
 
     
-
+    <div id="container-earth"></div>
     
     <div id="container"></div>
     <div id="menu">
@@ -480,29 +549,28 @@
 
 
          // earth
-         var angle = 0;
-        for (var i = 0; i < objects.length; i++) {
-            var object = new THREE.Object3D();
-            // if(i > (objects.length / 2)) {
-            //     var r = 2000;
-            //     angle = angle + 4*Math.PI /objects.length;
-            //     object.position.x = r * Math.cos(angle);
-            //     object.position.z = r * Math.sin(angle);
-            // }else{
-            //     var r = 1600;
-            //     angle = angle + 4*Math.PI /objects.length;
-            //     object.position.x = r * Math.cos(angle);
-            //     object.position.z = r * Math.sin(angle);
-            //     // object.position.z = 0;
-            // }
-            // vector.x = object.position.x * 2;
-            // vector.y = object.position.y *2;
-            // vector.z = object.position.z ;
-            // object.lookAt(vector);
-            // console.log(r,object.length)
-            console.log(123);
-            targets.earth.push(object);
-        }
+        //  var angle = 0;
+        // for (var i = 0; i < objects.length; i++) {
+        //     var object = new THREE.Object3D();
+        //     if(i > (objects.length / 2)) {
+        //         var r = 2000;
+        //         angle = angle + 4*Math.PI /objects.length;
+        //         object.position.x = r * Math.cos(angle);
+        //         object.position.z = r * Math.sin(angle);
+        //     }else{
+        //         var r = 1600;
+        //         angle = angle + 4*Math.PI /objects.length;
+        //         object.position.x = r * Math.cos(angle);
+        //         object.position.z = r * Math.sin(angle);
+        //         // object.position.z = 0;
+        //     }
+        //     vector.x = object.position.x *4;
+        //     vector.y = object.position.y * 2;
+        //     vector.z = object.position.z *2;
+        //     object.lookAt(vector);
+        //     // console.log(r,object.length)
+        //     targets.earth.push(object);
+        // }
         //
 
         renderer = new THREE.CSS3DRenderer();
@@ -561,9 +629,18 @@
 
         var button = document.getElementById('earth');
         button.addEventListener('click', function(event) {
-
-            transform(targets.earth, 2000);
-
+            // transform(targets.earth, 2000);
+            var container = document.getElementById('container-earth');
+            var options={"objects":objects};
+            var globe = new DAT.Globe(container,options);
+            globe.initCircle();
+            // console.log(globe.);
+            globe.animate(); 
+            // object = {};
+            targets.earth;
+            console.log(targets.earth)
+            //隐藏所有的元素
+            // transform(targets.earth, 2000);
         }, false);
 
         transform(targets.table, 2000);
@@ -602,37 +679,27 @@
             .to({}, duration * 2)
             .onUpdate(render)
             .start();
-
     }
 
     //重置window 的大小
     function onWindowResize() {
-
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
-
         renderer.setSize(window.innerWidth, window.innerHeight);
-
         render();
 
     }
 
     //执行动画
     function animate() {
-
         requestAnimationFrame(animate);
-
         TWEEN.update();
-
         controls.update();
-
     }
 
     //渲染
     function render() {
-
         renderer.render(scene, camera);
-
     }
     </script>
 </body>

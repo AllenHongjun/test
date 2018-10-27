@@ -22,21 +22,21 @@
                 drawAxes(scene);
                 
                 var material = new THREE.MeshBasicMaterial({
-                    color: 0xffff00,
+                    color: 0xff9900,
                     wireframe: true
                 });
                     
-                // var light = new THREE.DirectionalLight(0xffffff);
-                // light.position.set(-5, 10, 5);
-                // scene.add(light);
+                var light = new THREE.DirectionalLight(0xffffff);
+                light.position.set(-5, 10, 5);
+                scene.add(light);
 
                 // load font
                 var loader = new THREE.FontLoader();
                 loader.load('../lib/helvetiker_regular.typeface.json', function(font) {
-                    var mesh = new THREE.Mesh(new THREE.TextGeometry('Alan', {
+                    var mesh = new THREE.Mesh(new THREE.TextGeometry('YXL', {
                         font: font,
                         size: 1,
-                        height: 1
+                        height: .5  //文字的厚度
                     }), material);
                     scene.add(mesh);
                     
